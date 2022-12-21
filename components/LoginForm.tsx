@@ -20,7 +20,7 @@ const LoginForm = () => {
     .email('Lutfen gecerli email adresini giriniz.')
     .required('Lutfen email kismini bos birakmayiniz'),
   password: Yup.string()
-    .min(8, 'Sifre en az 8 karakter icermelidir')
+    .min(6, 'Sifre en az 6 karakter icermelidir')
     .max(20, 'Sifre en fazla 20 karakter icermelidir.')
     .required('Lutfen password kismini bos birakmayiniz')
     .matches(/\d+/, 'Sifre rakam icermelidir')
