@@ -61,7 +61,7 @@ const RegisterForm = () => {
     }
 
     return (
-        <div className="mt-40 flex flex-col  md:px-80 xl:px-96">
+        <div className="mt-4 flex flex-col  md:px-80 xl:px-96">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-12">
                     <div className="mb-3">
@@ -103,8 +103,7 @@ const RegisterForm = () => {
                         >
                             Phone
                         </label>
-                        
-
+                        <div className="invalid-feedback">{(errors.telephone as any)?.message}</div>
                         <PhoneInput
                             {...register("telephone")}
                             maxLength="17"
