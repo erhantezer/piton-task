@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { useState } from "react";
 import {RiLoginCircleLine,RiLogoutCircleRLine} from "react-icons/ri";
+
 
 
 const Navbar = () => {
@@ -19,8 +21,7 @@ const Navbar = () => {
                         Products
                     </Link> */}
                     {true ? (
-                        <button
-                            // onClick={() => removeUser()}
+                        <button                     
                             className="flex gap-1 font-medium py-2 px-2 rounded  hover:bg-gray-500 text-black  text-center bg-white">
                         
                             <RiLogoutCircleRLine size={22} /> Logout
@@ -31,6 +32,7 @@ const Navbar = () => {
                             className="flex gap-2 font-medium py-2 px-2 rounded  hover:bg-blue-700 text-white  text-center bg-blue-500">
                                 <RiLoginCircleLine size={22} />
                                 Login/Register
+                                
                             </button>
                         </Link>
                     )}
