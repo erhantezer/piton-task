@@ -24,25 +24,25 @@ import { useRouter } from "next/router";
 
 //! nafe, nf
 const RegisterForm = () => {
-    
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [value, setValue] = useState<any>();
+    // const [name, setName] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("");
 
-const router = useRouter()
+    const router = useRouter()
 
     const registerShema = Yup.object().shape({
         name: Yup.string()
-        .required("Adinizi girmeniz zorunlu!"),
+            .required("Adinizi girmeniz zorunlu!"),
         surname: Yup.string()
-        .required("Soyadinizi girmeniz zorunlu!"),
+            .required("Soyadinizi girmeniz zorunlu!"),
         telephone: Yup.number()
-        .min(17)
-        .required("Tel girmeniz zorunlu!"),
+            .min(17)
+            .required("Tel girmeniz zorunlu!"),
         email: Yup.string()
             .email("E-Mail formatinda giriniz!")
             .required("Email girmeniz zorunlu!"),
-            password: Yup.string()
+        password: Yup.string()
             .min(6, 'Sifre en az 6 karakter icermelidir')
             .max(20, 'Sifre en fazla 20 karakter icermelidir.')
             .required('Lutfen password kismini bos birakmayiniz')
@@ -64,24 +64,24 @@ const router = useRouter()
 
     const onSubmit = (data: any) => {
         axios
-          .post("https://assignment-api.piton.com.tr/api/v1/user/register", {
-            name: data.name,
-            password: data.password,
-            email: data.email,
-          })
-          .then((res) => {
-            
-            localStorage.setItem("user", res.data.token);
-            
-          })
-          .catch((err) => {
-            console.log("Bad REQUEST", err);
-          });
-          router.push("/products")
-      };
+      .post("https://assignment-api.piton.com.tr/api/v1/user/register", {
+        name: data.name,
+        password: data.password,
+        email: data.email,
+      })
+      .then((res) => {
+        console.log("res", res.data);
+        localStorage.setItem("user", res.data.token);
+        router.push("/products");
+      })
+      .catch((err) => {
+        console.log("Bad REQUEST", err);
+      });
+        router.push("/products")
+    };
 
     return (<>
-    <Navbar/>
+        <Navbar />
         <div className="mt-4 flex flex-col  md:px-80 xl:px-96">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-12">
@@ -99,8 +99,8 @@ const router = useRouter()
                             id="name"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            // value={name}
+                            // onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -128,15 +128,18 @@ const router = useRouter()
                         </label>
                         <div className="invalid-feedback">{(errors.telephone as any)?.message}</div>
                         <PhoneInput
-                            {...register("telephone")}
+                            
                             maxLength="17"
-                            onChange={() => console.log("value")}
+                            // onChange={() => console.log("value")}
                             id="telephone"
                             className="bg-gray-100  border text-sm rounded-lg border-gray-400 w-full p-2 "
                             international
                             countryCallingCodeEditable={false}
                             defaultCountry="TR"
                             placeholder="Enter Phone Number"
+                            value={value}
+                            {...register("telephone")}
+                            onChange={setValue}
                         />
                     </div>
                     <div className="mb-3">
@@ -154,8 +157,8 @@ const router = useRouter()
                             id="email"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="example@gmail.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            // value={email}
+                            // onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -171,8 +174,8 @@ const router = useRouter()
                             type="password"
                             id="password"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            // value={password}
+                            // onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -197,7 +200,7 @@ const router = useRouter()
                 </div>
             </form>
         </div>
-        </>
+    </>
     );
 }
 

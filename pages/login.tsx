@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import toast, { Toaster } from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
@@ -9,7 +10,6 @@ import { useRouter } from 'next/router';
 
 
 //! https://nsikakimoh.com/blog/form-validation-nextjs-react-hook-form-yup
-
 
 
 
@@ -40,7 +40,6 @@ const LoginForm = () => {
     const { errors } = formState;
 
     const onSubmit = async (data: any) => {
-        console.log(data);
         setToken("");
         await axios
             .post("https://assignment-api.piton.com.tr/api/v1/user/login", {
@@ -49,25 +48,28 @@ const LoginForm = () => {
             })
             .then((res) => {
                 if (res.data.token !== "") {
-                    
+                    toast.success("Enter Success!");
                     setToken(res.data.token);
+                    router.push("/products")
                     localStorage.setItem("user", res.data.token);
                     if (check !== false) {
                         localStorage.setItem("user", res.data.token);
                     }
-                }else {
-                console.log("hesap yok");
+                } else {
+                    toast.error("there is no such account");
                 }
             })
             .catch((err) => {
                 console.log("bad request", err);
             });
-            router.push("/products")
+        
     }
+
+
     return (<>
-    <Navbar/>
+        <Navbar />
         <div className="mt-40 flex flex-col px-8 md:px-80 xl:px-96">
-            
+
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-16">
@@ -121,19 +123,19 @@ const LoginForm = () => {
                     </div>
 
                     <button
-                    
+
                         className=" font-medium py-2 px-6 rounded  hover:bg-blue-700 text-white w-full text-center bg-blue-500">
                         Login
                     </button>
 
                 </div>
-
+                <Toaster />
             </form>
 
         </div>
-        </>
+    </>
     );
-   
+
 }
 
 export default LoginForm;
