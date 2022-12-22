@@ -2,26 +2,26 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import { Inter } from '@next/font/google'
 // import styles from '../styles/Home.module.css'
-import LoginForm from '../components/LoginForm'
-import RegisterForm from '../components/RegisterForm'
+import RegisterForm from './register'
 import Navbar from '../components/Navbar'
 import { useState } from 'react'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [regForm, setRegForm] = useState(false);
-  const [logForm, setLogForm] = useState(true);
+  // const [regForm, setRegForm] = useState(false);
+  // const [logForm, setLogForm] = useState(true);
 
-  const handleLogin = () => {
-    setLogForm(true);
-    setRegForm(false);
-  };
+  // const handleLogin = () => {
+  //   setLogForm(true);
+  //   setRegForm(false);
+  // };
 
-  const handleRegister = () => {
-    setLogForm(false);
-    setRegForm(true);
-  };
+  // const handleRegister = () => {
+  //   setLogForm(false);
+  //   setRegForm(true);
+  // };
   return (
     <>
 
@@ -32,7 +32,8 @@ export default function Home() {
         <link rel="icon" href="/piton.ico" />
       </Head>
       <Navbar />
-      <div className="flex justify-center gap-x-28 mt-2">
+
+      {/* <div className="flex justify-center gap-x-28 mt-2">
         <button
           onClick={handleLogin}
           className="bg-blue-500 w-28 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded">
@@ -45,7 +46,7 @@ export default function Home() {
           Register
         </button>
       </div>
-      {logForm==true && regForm==false ? <LoginForm />:<RegisterForm/>}
+      {logForm==true && regForm==false ? <LoginForm />:<RegisterForm/>} */}
       
     </>
   )

@@ -3,6 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import axios from "axios"
+import Navbar from '../components/Navbar';
+import { useRouter } from 'next/router';
 
 
 
@@ -16,6 +18,7 @@ const LoginForm = () => {
     const [check, setCheck] = useState(false);
     const [token, setToken] = useState("");
 
+    const router = useRouter()
 
 
     const loginShema = Yup.object().shape({
@@ -48,7 +51,6 @@ const LoginForm = () => {
                 if (res.data.token !== "") {
                     
                     setToken(res.data.token);
-                    //Değiştirilebilir
                     localStorage.setItem("user", res.data.token);
                     if (check !== false) {
                         localStorage.setItem("user", res.data.token);
@@ -60,10 +62,12 @@ const LoginForm = () => {
             .catch((err) => {
                 console.log("bad request", err);
             });
+            router.push("/products")
     }
-    return (
+    return (<>
+    <Navbar/>
         <div className="mt-40 flex flex-col px-8 md:px-80 xl:px-96">
-
+            
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-16">
@@ -117,6 +121,7 @@ const LoginForm = () => {
                     </div>
 
                     <button
+                    
                         className=" font-medium py-2 px-6 rounded  hover:bg-blue-700 text-white w-full text-center bg-blue-500">
                         Login
                     </button>
@@ -126,7 +131,9 @@ const LoginForm = () => {
             </form>
 
         </div>
+        </>
     );
+   
 }
 
 export default LoginForm;

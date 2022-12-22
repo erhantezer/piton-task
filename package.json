@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next dev login.tsx",
+    "build": "next build login.tsx",
+    "start": "next start login.tsx",
     "lint": "next lint"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import store from "../../store/store";
+// import store from "../../store/store";
 
 interface Item {
     id: number;
@@ -8,7 +8,7 @@ interface Item {
     description: string;
     price: number;
     likes: Array<any>;
-  }
+}
 
 const ProductDetail = () => {
     const router = useRouter();

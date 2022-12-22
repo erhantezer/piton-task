@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
 
 //! https://nsikakimoh.com/blog/form-validation-nextjs-react-hook-form-yup
 // function Example() {
@@ -27,7 +29,7 @@ const RegisterForm = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-
+const router = useRouter()
 
     const registerShema = Yup.object().shape({
         name: Yup.string()
@@ -75,9 +77,11 @@ const RegisterForm = () => {
           .catch((err) => {
             console.log("Bad REQUEST", err);
           });
+          router.push("/products")
       };
 
-    return (
+    return (<>
+    <Navbar/>
         <div className="mt-4 flex flex-col  md:px-80 xl:px-96">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-12">
@@ -193,6 +197,7 @@ const RegisterForm = () => {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 
