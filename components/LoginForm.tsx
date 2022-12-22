@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import RegisterForm from './RegisterForm';
 
 
 
@@ -11,8 +13,6 @@ import { useForm } from "react-hook-form";
 
 //! nafe
 const LoginForm = () => {
-
-
 
     const loginShema = Yup.object().shape({
 
@@ -37,17 +37,7 @@ const LoginForm = () => {
     }
     return (
         <div className="mt-40 flex flex-col px-8 md:px-80 xl:px-96">
-            <div className="flex justify-center gap-x-28 mt-2">
-                <button
-                    className="bg-blue-500 w-28 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded">
-                    Login
-                </button>
 
-                <button
-                    className="bg-blue-500 w-28 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded">
-                    Register
-                </button>
-            </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-16">
@@ -106,6 +96,7 @@ const LoginForm = () => {
                 </div>
 
             </form>
+            
         </div>
     );
 }
