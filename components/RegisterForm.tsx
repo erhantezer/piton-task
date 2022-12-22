@@ -4,7 +4,7 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
-
+import axios from "axios";
 
 //! https://nsikakimoh.com/blog/form-validation-nextjs-react-hook-form-yup
 // function Example() {
@@ -22,7 +22,11 @@ import { useForm } from "react-hook-form";
 
 //! nafe, nf
 const RegisterForm = () => {
-    const [value, setValue] = useState();
+    
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+
 
 
     const registerShema = Yup.object().shape({
@@ -56,9 +60,22 @@ const RegisterForm = () => {
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors } = formState;
 
-    const onSubmit = () => {
-        console.log("register")
-    }
+    const onSubmit = (data: any) => {
+        axios
+          .post("https://assignment-api.piton.com.tr/api/v1/user/register", {
+            name: data.name,
+            password: data.password,
+            email: data.email,
+          })
+          .then((res) => {
+            
+            localStorage.setItem("user", res.data.token);
+            
+          })
+          .catch((err) => {
+            console.log("Bad REQUEST", err);
+          });
+      };
 
     return (
         <div className="mt-4 flex flex-col  md:px-80 xl:px-96">
@@ -78,6 +95,8 @@ const RegisterForm = () => {
                             id="name"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -110,7 +129,6 @@ const RegisterForm = () => {
                             onChange={() => console.log("value")}
                             id="telephone"
                             className="bg-gray-100  border text-sm rounded-lg border-gray-400 w-full p-2 "
-                            value={value}
                             international
                             countryCallingCodeEditable={false}
                             defaultCountry="TR"
@@ -132,6 +150,8 @@ const RegisterForm = () => {
                             id="email"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="example@gmail.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -147,6 +167,8 @@ const RegisterForm = () => {
                             type="password"
                             id="password"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">

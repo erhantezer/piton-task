@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
-import RegisterForm from './RegisterForm';
+import axios from "axios"
 
 
 
@@ -13,6 +13,10 @@ import RegisterForm from './RegisterForm';
 
 //! nafe
 const LoginForm = () => {
+    const [check, setCheck] = useState(false);
+    const [token, setToken] = useState("");
+
+
 
     const loginShema = Yup.object().shape({
 
@@ -32,8 +36,30 @@ const LoginForm = () => {
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors } = formState;
 
-    const onSubmit = () => {
-        console.log("data")
+    const onSubmit = async (data: any) => {
+        console.log(data);
+        setToken("");
+        await axios
+            .post("https://assignment-api.piton.com.tr/api/v1/user/login", {
+                password: data.password,
+                email: data.email,
+            })
+            .then((res) => {
+                if (res.data.token !== "") {
+                    
+                    setToken(res.data.token);
+                    //Değiştirilebilir
+                    localStorage.setItem("user", res.data.token);
+                    if (check !== false) {
+                        localStorage.setItem("user", res.data.token);
+                    }
+                }else {
+                console.log("hesap yok");
+                }
+            })
+            .catch((err) => {
+                console.log("bad request", err);
+            });
     }
     return (
         <div className="mt-40 flex flex-col px-8 md:px-80 xl:px-96">
@@ -76,6 +102,8 @@ const LoginForm = () => {
                     <div className="flex items-start mb-6">
                         <div className="flex items-center h-5">
                             <input
+                                defaultChecked={check}
+                                onChange={() => setCheck(!check)}
                                 id="remember"
                                 type="checkbox"
                                 className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 " />
@@ -96,7 +124,7 @@ const LoginForm = () => {
                 </div>
 
             </form>
-            
+
         </div>
     );
 }

@@ -12,7 +12,7 @@ interface Item {
 
 const ProductDetail = () => {
     const router = useRouter();
-    const {productId} = router.query
+    const {proId} = router.query
 
     return (
         <div>

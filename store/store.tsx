@@ -14,6 +14,7 @@
 // export type AppState = ReturnType<typeof rootReducer>;
 
 // export default store;
+
 const store = () => {
   return (
     <div>
