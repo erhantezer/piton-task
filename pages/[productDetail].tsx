@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Like from "../components/Like";
 
@@ -28,46 +27,47 @@ const ProductDetail = ({ productId }: Props) => {
     useEffect(() => {
         if (!proId) return;
         const getData = async () => {
-            await axios
-                .get(`https://assignment-api.piton.com.tr/api/v1/product/get/${proId}`, {
-                    headers: {
-                        "Content-Type": "application/json;charset=UTF-8",
-                        "access-token": `${localStorage.getItem("user")}`,
-                    },
-                })
-                .then((res) => {
-                    setProduct(res.data.product);
-                    console.log(res);
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                    router.push("/");
-                });
-        };
-        getData();
-    }, [proId]);
-
-    if (!proId) return;
-    const getData = async () => {
-        await axios
+          await axios
             .get(`https://assignment-api.piton.com.tr/api/v1/product/get/${proId}`, {
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
-                    "access-token": `${localStorage.getItem("user")}`,
-                },
+              headers: {
+                "Content-Type": "application/json;charset=UTF-8",
+                "access-token": `${localStorage.getItem("user")}`,
+              },
             })
             .then((res) => {
-                setProduct(res.data.product);
-                console.log(res);
+              setProduct(res.data.product);
+              console.log(res);
             })
             .catch((err) => {
-                console.log(err.response.data);
+              console.log(err.response.data);
+              router.push("/");
             });
-    };
-
-    if (!product) {
+        };
+        getData();
+      }, [proId]);
+    
+      if (!proId) return;
+      const getData = async () => {
+        await axios
+          .get(`https://assignment-api.piton.com.tr/api/v1/product/get/${proId}`, {
+            headers: {
+              "Content-Type": "application/json;charset=UTF-8",
+              "access-token": `${localStorage.getItem("user")}`,
+            },
+          })
+          .then((res) => {
+            setProduct(res.data.product);
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+          });
+      };
+    
+      if (!product) {
         return null;
-    }
+      }
+    
 
     return (
         <div>

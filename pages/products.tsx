@@ -43,7 +43,9 @@ const Products = ({ productId }: Props) => {
                     router.push("/");
                 });
         };
+
         getData();
+        
     }, []);
 
     const getData = async () => {
@@ -71,36 +73,36 @@ const Products = ({ productId }: Props) => {
     return (
         <div>
             <Navbar />
-            <div className="flex justify-center gap-x-8 flex-wrap">
+            <div className="flex justify-center gap-x-10 flex-wrap ">
                 {products.map((product, index) => (
-                    <div key={index}>
+                    <div key={index} className="text-center">
                         <div className="max-w-xs  border rounded-lg shadow-md mt-16">
                             <Like
                                 productId={product.id}
                                 productLikes={product.likes === 1}
                                 toggle={getData}
                             />
-                            <div className="flex flex-col p-10 text-center">
+                            <div className="flex flex-col p-12 text-center h-96 w-80">
                                 <Link href={`/products/${product.id}`}>
                                     <img
                                         src={`https://assignment-api.piton.com.tr${product.image}`}
                                         alt={`${product.name}`}
-                                        className="object-contain object-center w-48 rounded-t-md h-72"
+                                        className="object-contain object-center w-64 rounded-t-md h-40"
                                     />
 
                                     <div className="space-y-2 mt-4  border-b-4">
-                                        <p className="whitespace-pre-line text-lg font-medium tracking-wide truncate p-1">
+                                        <p className="whitespace-pre-line  font-medium tracking-wide truncate p-1">
                                             {product.name}
                                         </p>
-                                        {/* <p className="truncate">{product.description}</p> */}
+                                        
                                     </div>
                                 </Link>
 
                             </div>
                             <div className="text-center">
-                                    <h2 className="text-blue-700 text-lg mb-2  font-semibold">
+                                    <p className="text-blue-700 text-lg mb-2  font-semibold">
                                         {product.price.toFixed(2)} ₺
-                                    </h2>
+                                    </p>
                                 </div>
                         </div>
                         

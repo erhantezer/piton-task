@@ -70,7 +70,6 @@ const LoginForm = () => {
         <Navbar />
         <div className="mt-40 flex flex-col px-8 md:px-80 xl:px-96">
 
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-16">
 
