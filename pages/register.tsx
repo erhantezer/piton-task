@@ -82,7 +82,7 @@ const RegisterForm = () => {
 
     return (<>
         <Navbar />
-        <div className="mt-4 flex flex-col  md:px-80 xl:px-96">
+        <div className="mt-1 flex flex-col  md:px-80 xl:px-96">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="shadow-xl p-12">
                     <div className="mb-3">

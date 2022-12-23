@@ -8,8 +8,10 @@
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Edu+VIC+WA+NT+Beginner:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Roboto:wght@300&display=swap');
 
 body {
-    font-family: 'Edu VIC WA NT Beginner', cursive;
+/* font-family: 'Acme', sans-serif;
+font-family: 'Edu VIC WA NT Beginner', cursive; */
+font-family: 'Roboto', sans-serif;
 }

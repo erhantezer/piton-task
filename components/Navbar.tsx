@@ -16,8 +16,9 @@ const Navbar = () => {
             <div className="container mx-auto flex justify-between items-center p-4">
                 <div>
                     <Link href="/">
-                        <p className="bg-blue-500 py-2 px-4 text-white rounded">
-                            Piton<span>Shop</span></p>
+                        <p className="bg-blue-500 py-2 px-6 text-white rounded-full font-semibold
+                        text-lg">
+                            Piton<span className="text-blue-200">Shop</span></p>
                     </Link>
                 </div>
                 <div className="flex items-center gap-x-10">
