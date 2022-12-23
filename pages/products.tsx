@@ -82,14 +82,15 @@ export default function Products({ productId }: IProps) {
                             />
                             <div className="flex flex-col p-12 text-center h-96 w-80">
                                 <Link href={{pathname:`/products/[id]`,query:{id:product.id}}}>
+                                    <picture>
                                     <img
                                         src={`https://assignment-api.piton.com.tr${product.image}`}
                                         alt={`${product.name}`}
                                         className="object-contain object-center w-64 rounded-t-md h-40"
                                     />
-
+                                    </picture>
                                     <div className="space-y-2 mt-4  border-b-4">
-                                        <p className="whitespace-pre-line  font-medium tracking-wide truncate p-1">
+                                        <p className="whitespace-pre-line text-lg  font-medium tracking-wide truncate p-1">
                                             {product.name}
                                         </p>
                                     </div>

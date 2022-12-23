@@ -16,8 +16,8 @@ export default function LikeButton({
     toggle = () => { },
     toggleProduct = () => { },
 }: IProps) {
-    const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsImlhdCI6MTY3MTMwNjIyNSwiZXhwIjoxNjk3MjI2MjI1fQ.iaUBVe19RGFgH26JlQ6RMzOMP63UuL-9UUeQoZoBjQk";
+    const token =localStorage.getItem("user")
+        // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsImlhdCI6MTY3MTMwNjIyNSwiZXhwIjoxNjk3MjI2MjI1fQ.iaUBVe19RGFgH26JlQ6RMzOMP63UuL-9UUeQoZoBjQk";
     const postLike = async () => {
         console.log(productLikes);
         if (!productLikes) {
@@ -65,9 +65,9 @@ export default function LikeButton({
         <>
             <button onClick={() => postLike()} className="flex ml-auto">
                 {productLikes ? (
-                    <AiFillHeart size={26} color="red" />
+                    <AiFillHeart size={28} color="red" />
                 ) : (
-                    <AiOutlineHeart size={26} color="red" />
+                    <AiOutlineHeart size={28} color="red" />
                 )}
             </button>
         </>

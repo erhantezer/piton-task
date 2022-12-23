@@ -1,14 +1,24 @@
 import Link from "next/link";
-// import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { RiLoginCircleLine, RiLogoutCircleRLine } from "react-icons/ri";
 
 
 
 const Navbar = () => {
-    // const currentUser  = JSON.parse(localStorage.getItem("user") || "")
-    const currentUser = false
-    // const router = useRouter();
+
+    const [currentUser, setCurrentUser] = useState<any>("");
+
+    useEffect(() => {
+        setCurrentUser(localStorage.getItem("user"));
+    }, []);
+
+    const router = useRouter();
+    const removeUser = () => {
+        localStorage.removeItem("user");
+        setCurrentUser("");
+        router.push("/login");
+    };
 
     return (
 
@@ -22,13 +32,10 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="flex items-center gap-x-10">
-                    {/* <Link href="/products" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 ">
-                        Products
-                    </Link> */}
                     {currentUser ? (
                         <Link href="/login">
                             <button
-                                // onClick={() => router.push("/login")}
+                                onClick={() => removeUser()}
                                 className="flex gap-1 font-medium py-2 px-2 rounded  hover:bg-gray-500 text-black  text-center bg-white">
 
                                 <RiLogoutCircleRLine size={22} /> Logout
@@ -37,7 +44,6 @@ const Navbar = () => {
                     ) : (<div className="flex gap-3">
                         <Link href="/login" >
                             <button
-                                // onClick={() => router.push("/login")}
                                 className="flex gap-2 font-medium py-2 px-2 rounded  hover:bg-blue-700 text-white w-28 text-center bg-blue-500">
                                 <RiLoginCircleLine size={22} />
                                 Login
@@ -45,7 +51,6 @@ const Navbar = () => {
                         </Link>
                         <Link href="/register">
                             <button
-                                // onClick={() => router.push("/register")}
                                 className="flex gap-2 font-medium py-2 px-2 rounded  hover:bg-blue-700 text-white  text-center bg-blue-500">
                                 <RiLoginCircleLine size={22} />
                                 Register
