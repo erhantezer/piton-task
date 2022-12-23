@@ -8,27 +8,9 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 
-//! https://nsikakimoh.com/blog/form-validation-nextjs-react-hook-form-yup
-// function Example() {
-//   // `value` will be the parsed phone number in E.164 format.
-//   // Example: "+12133734253".
-//   const [value, setValue] = useState()
-//   return (
-//     <PhoneInput
-//       placeholder="Enter phone number"
-//       value={value}
-//       onChange={setValue}/>
-//   )
-// }
-
-
 //! nafe, nf
 const RegisterForm = () => {
     const [value, setValue] = useState<any>();
-    // const [name, setName] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [email, setEmail] = useState("");
-
     const router = useRouter()
 
     const registerShema = Yup.object().shape({
@@ -64,19 +46,19 @@ const RegisterForm = () => {
 
     const onSubmit = (data: any) => {
         axios
-      .post("https://assignment-api.piton.com.tr/api/v1/user/register", {
-        name: data.name,
-        password: data.password,
-        email: data.email,
-      })
-      .then((res) => {
-        console.log("res", res.data);
-        localStorage.setItem("user", res.data.token);
-        router.push("/products");
-      })
-      .catch((err) => {
-        console.log("Bad REQUEST", err);
-      });
+            .post("https://assignment-api.piton.com.tr/api/v1/user/register", {
+                name: data.name,
+                password: data.password,
+                email: data.email,
+            })
+            .then((res) => {
+                console.log("res", res.data);
+                localStorage.setItem("user", res.data.token);
+                router.push("/products");
+            })
+            .catch((err) => {
+                console.log("Bad REQUEST", err);
+            });
         router.push("/products")
     };
 
@@ -99,8 +81,7 @@ const RegisterForm = () => {
                             id="name"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="Name"
-                            // value={name}
-                            // onChange={(e) => setName(e.target.value)}
+
                         />
                     </div>
                     <div className="mb-3">
@@ -128,9 +109,7 @@ const RegisterForm = () => {
                         </label>
                         <div className="invalid-feedback">{(errors.telephone as any)?.message}</div>
                         <PhoneInput
-                            
                             maxLength="17"
-                            // onChange={() => console.log("value")}
                             id="telephone"
                             className="bg-gray-100  border text-sm rounded-lg border-gray-400 w-full p-2 "
                             international
@@ -157,8 +136,6 @@ const RegisterForm = () => {
                             id="email"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="example@gmail.com"
-                            // value={email}
-                            // onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -174,8 +151,6 @@ const RegisterForm = () => {
                             type="password"
                             id="password"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
-                            // value={password}
-                            // onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">

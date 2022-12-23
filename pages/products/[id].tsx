@@ -100,12 +100,10 @@ const ProductDetail = ({ productId }: IProps) => {
 
                             <p className="">{product?.description}</p>
 
-                            <div className="flex justify-content-center">
-                                <span className="title-font font-medium text-2xl text-gray-900">
+                            <div className="flex justify-end">
+                                <span className=" bg-blue-500 p-1 rounded-l-full text-white title-font font-medium text-2xl">
                                     {product?.price} TL
                                 </span>
-
-
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="border-b-4 border-slate-400 py-2 bg-slate-200">
             <div className="container mx-auto flex justify-between items-center p-4">
                 <div>
-                    <Link href="/">
+                    <Link href={currentUser ? "/products" : "/login"}>
                         <p className="bg-blue-500 py-2 px-6 text-white rounded-full font-semibold
                         text-lg">
                             Piton<span className="text-blue-200">Shop</span></p>
