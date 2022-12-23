@@ -1,18 +1,24 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 
-interface Props {
-    productId?: number;
+
+interface IProps {
+    productId?: number | string;
     productLikes?: boolean;
     toggle?: () => void;
     toggleProduct?: () => void;
 }
-
-const Like = ({ productId, productLikes, toggle = () => { }, toggleProduct = () => { }, }: Props) => {
-    const token = localStorage.getItem("user")
-
-    const productLike = async () => {
+export default function LikeButton({
+    productId,
+    productLikes,
+    toggle = () => { },
+    toggleProduct = () => { },
+}: IProps) {
+    const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsImlhdCI6MTY3MTMwNjIyNSwiZXhwIjoxNjk3MjI2MjI1fQ.iaUBVe19RGFgH26JlQ6RMzOMP63UuL-9UUeQoZoBjQk";
+    const postLike = async () => {
         console.log(productLikes);
         if (!productLikes) {
             await axios
@@ -54,17 +60,16 @@ const Like = ({ productId, productLikes, toggle = () => { }, toggleProduct = () 
         toggleProduct();
         toggle();
     };
+
     return (
-        <div>
-            <button onClick={() => productLike()} className="flex ml-auto">
+        <>
+            <button onClick={() => postLike()} className="flex ml-auto">
                 {productLikes ? (
                     <AiFillHeart size={26} color="red" />
                 ) : (
                     <AiOutlineHeart size={26} color="red" />
                 )}
             </button>
-        </div>
+        </>
     );
 }
-
-export default Like;

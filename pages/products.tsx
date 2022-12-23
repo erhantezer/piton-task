@@ -6,7 +6,7 @@ import Like from "../components/Like";
 import { useRouter } from "next/router";
 
 
-interface Data {
+interface IProduct {
     id: number;
     name: string;
     image: string;
@@ -15,17 +15,17 @@ interface Data {
     likes: number;
 }
 
-interface Props {
+interface IProps {
     productId: number;
     productLikes: number;
     toggle: () => void;
 }
 
-const Products = ({ productId }: Props) => {
-    const [products, setProducts] = useState<Data[]>([])
-
-
+export default function Products({ productId }: IProps) {
+    const [products, setProducts] = useState<IProduct[]>([]);
+    console.log(products);
     const router = useRouter();
+
     useEffect(() => {
         const getData = async () => {
             await axios
@@ -43,9 +43,7 @@ const Products = ({ productId }: Props) => {
                     router.push("/");
                 });
         };
-
         getData();
-        
     }, []);
 
     const getData = async () => {
@@ -83,7 +81,7 @@ const Products = ({ productId }: Props) => {
                                 toggle={getData}
                             />
                             <div className="flex flex-col p-12 text-center h-96 w-80">
-                                <Link href={`/products/${product.id}`}>
+                                <Link href={{pathname:`/products/[id]`,query:{id:product.id}}}>
                                     <img
                                         src={`https://assignment-api.piton.com.tr${product.image}`}
                                         alt={`${product.name}`}
@@ -94,18 +92,17 @@ const Products = ({ productId }: Props) => {
                                         <p className="whitespace-pre-line  font-medium tracking-wide truncate p-1">
                                             {product.name}
                                         </p>
-                                        
                                     </div>
                                 </Link>
 
                             </div>
                             <div className="text-center">
-                                    <p className="text-blue-700 text-lg mb-2  font-semibold">
-                                        {product.price.toFixed(2)} ₺
-                                    </p>
-                                </div>
+                                <p className="text-blue-700 text-lg mb-2  font-semibold">
+                                    {product.price.toFixed(2)} ₺
+                                </p>
+                            </div>
                         </div>
-                        
+
 
                     </div>
                 ))}
@@ -114,4 +111,3 @@ const Products = ({ productId }: Props) => {
     );
 }
 
-export default Products;
