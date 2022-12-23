@@ -2,24 +2,24 @@ import * as Yup from 'yup';
 import toast, { Toaster } from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios"
 import Navbar from '../components/Navbar';
 import { useRouter } from 'next/router';
 
 
 
-//! https://nsikakimoh.com/blog/form-validation-nextjs-react-hook-form-yup
-
-
 
 //! nafe
 const LoginForm = () => {
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState<boolean>(false)
     const [token, setToken] = useState("");
-
+    // const [remember, setRemember] = useState<any>()
+    // const [email,setEmail] =useState(remember?.email)
+    // const [password,setPassword] = useState(remember?.password)
     const router = useRouter()
 
+    
 
     const loginShema = Yup.object().shape({
 
@@ -39,6 +39,21 @@ const LoginForm = () => {
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors } = formState;
 
+    
+    // useEffect(() => {
+      
+    // if (typeof window !== 'undefined') {
+        
+    //     const userInfo=JSON.parse(localStorage.getItem("remembredUser"))
+    //     console.log(JSON.stringify(localStorage.getItem("remembredUser")))
+    //     console.log(userInfo)
+    //     const newUserInfo = {email:userInfo.email, password:window.atob(userInfo.password)}
+    //     setRemember(newUserInfo)
+    // }
+     
+    // }, [])
+    
+    
     const onSubmit = async (data: any) => {
         setToken("");
         await axios
@@ -53,6 +68,7 @@ const LoginForm = () => {
                     router.push("/products")
                     localStorage.setItem("user", res.data.token);
                     if (check !== false) {
+                        // localStorage.setItem("remembredUser", JSON.stringify({password:window.btoa(data.password),email:data.email}));
                         localStorage.setItem("user", res.data.token);
                     }
                 } else {
@@ -87,6 +103,8 @@ const LoginForm = () => {
                             id="email"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
                             placeholder="example@gmail.com"
+                            // value={email}
+                            // onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-6">
@@ -102,6 +120,8 @@ const LoginForm = () => {
                             type="password"
                             id="password"
                             className="bg-gray-100 border text-sm rounded-lg border-gray-400 w-full p-2 "
+                            // value={password}
+                            // onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="flex items-start mb-6">

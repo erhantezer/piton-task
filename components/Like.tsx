@@ -16,7 +16,7 @@ export default function LikeButton({
     toggle = () => { },
     toggleProduct = () => { },
 }: IProps) {
-    const token =localStorage.getItem("user")
+    const token =localStorage.getItem("user") || ""
         // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsImlhdCI6MTY3MTMwNjIyNSwiZXhwIjoxNjk3MjI2MjI1fQ.iaUBVe19RGFgH26JlQ6RMzOMP63UuL-9UUeQoZoBjQk";
     const postLike = async () => {
         console.log(productLikes);

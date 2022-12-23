@@ -2,13 +2,21 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 // import styles from '../styles/Home.module.css'
 import Navbar from '../components/Navbar'
+import { useRouter } from 'next/router'
+
+
+
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router = useRouter();
 
-  return (
+  const user =(typeof window !== "undefined") && localStorage.getItem("user") || "";
+console.log(Boolean(user))
+  if(user){
+        return (
     <>
       <Head>
         <title>Piton Technology</title>
@@ -17,6 +25,14 @@ export default function Home() {
         <link rel="icon" href="/piton.ico" />
       </Head>
       <Navbar />
+      
     </>
   )
+  }else{
+    if (typeof window === "undefined") return null;
+    router.push("/login")
+ 
+  }
+
+  
 }

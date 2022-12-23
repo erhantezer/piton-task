@@ -23,7 +23,6 @@ interface IProps {
 
 export default function Products({ productId }: IProps) {
     const [products, setProducts] = useState<IProduct[]>([]);
-    console.log(products);
     const router = useRouter();
 
     useEffect(() => {
@@ -40,7 +39,7 @@ export default function Products({ productId }: IProps) {
                 })
                 .catch((err) => {
                     console.log(err.response.data);
-                    router.push("/");
+                    router.push("/login");
                 });
         };
         getData();
@@ -59,7 +58,7 @@ export default function Products({ productId }: IProps) {
             })
             .catch((err) => {
                 console.log(err.response.data);
-                router.push("/")
+                router.push("/login")
             });
     };
 
