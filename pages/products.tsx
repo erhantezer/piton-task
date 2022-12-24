@@ -60,6 +60,7 @@ export default function Products({ productId }: IProps) {
                 console.log(err.response.data);
                 router.push("/login")
             });
+            
     };
 
 

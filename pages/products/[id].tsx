@@ -22,12 +22,11 @@ interface IProps {
 const ProductDetail = ({ productId }: IProps) => {
     const router = useRouter();
     const { id } = router.query;
-    console.log(router.query)
     const [product, setProduct] = useState<IData>();
-    console.log(id);
+    
 
     useEffect(() => {
-        // if (!id) return;
+        if (!id) return;
         const getData = async () => {
             await axios
                 .get(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`, {
@@ -38,11 +37,9 @@ const ProductDetail = ({ productId }: IProps) => {
                 })
                 .then((res) => {
                     setProduct(res.data.product);
-                    console.log(res);
                 })
-                .catch((err) => {
-                    console.log(err.response.data);
-                    // router.push("/");
+                .catch((error) => {
+                    console.log(error);
                 });
         };
         getData();
@@ -61,15 +58,15 @@ const ProductDetail = ({ productId }: IProps) => {
                 setProduct(res.data.product);
                 console.log(res);
             })
-            .catch((err) => {
-                console.log(err.response.data);
+            .catch((error) => {
+                console.log(error);
             });
     };
 
     if (!product) {
         return null;
     }
-    // console.log(product.id)
+   
 
     return (
 
@@ -94,7 +91,7 @@ const ProductDetail = ({ productId }: IProps) => {
                             <h2 className="pr-4 text-sm title-font text-gray-500 tracking-widest">
                                 <Like
                                     productId={product?.id}
-                                    productLikes={product?.likes.length > 0}
+                                    productLikes={product?.likes?.length > 0}
                                     toggleProduct={getData}
                                 />
                             </h2>

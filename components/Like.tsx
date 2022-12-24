@@ -17,9 +17,9 @@ export default function LikeButton({
     toggleProduct = () => { },
 }: IProps) {
     const token =localStorage.getItem("user") || ""
-        // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsImlhdCI6MTY3MTMwNjIyNSwiZXhwIjoxNjk3MjI2MjI1fQ.iaUBVe19RGFgH26JlQ6RMzOMP63UuL-9UUeQoZoBjQk";
+
     const postLike = async () => {
-        console.log(productLikes);
+        
         if (!productLikes) {
             await axios
                 .post(
@@ -35,8 +35,8 @@ export default function LikeButton({
                 .then((res) => {
                     console.log(res);
                 })
-                .catch((err) => {
-                    console.log(err.response.data);
+                .catch((error) => {
+                    console.log(error);
                 });
         } else {
             await axios
@@ -53,8 +53,8 @@ export default function LikeButton({
                 .then((res) => {
                     console.log(res);
                 })
-                .catch((err) => {
-                    console.log(err.response.data);
+                .catch((error) => {
+                    console.log(error);
                 });
         }
         toggleProduct();

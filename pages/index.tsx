@@ -14,7 +14,7 @@ export default function Home() {
   const router = useRouter();
 
   const user =(typeof window !== "undefined") && localStorage.getItem("user") || "";
-console.log(Boolean(user))
+
   if(user){
         return (
     <>
