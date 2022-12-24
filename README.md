@@ -1,34 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### 🚩DESCRIPTION
 
-## Getting Started
+🔓 Login Pages:
 
-First, run the development server:
+Email and password are validated on the login page. When the user logs in, they are directed to the product page.
 
-```bash
-npm run dev
-# or
-yarn dev
+📖 Product Page:
+
+Our products are listed on the products page and when the product is clicked, the detail page opens.
+💗 Like button is used to select/remove favorite products.
+
+🔍 Register pages
+
+### 🚩 PROJECT STRUCTURE
+
+```js
+├── components
+│   ├── Like.tsx
+│   └── Navbar.tsx
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── pages
+│   ├── _app.tsx
+│   ├── _document.tsx
+│   ├── api
+│   │   └── hello.ts
+│   ├── index.tsx
+│   ├── login.tsx
+│   ├── products
+│   │   └── [id].tsx
+│   ├── products.tsx
+│   └── register.tsx
+├── postcss.config.js
+├── public
+│   ├── piton.ico
+│   └── piton.jpg
+├── store
+│   ├── product.tsx
+│   └── store.tsx
+├── styles
+│   ├── Home.module.css
+│   └── globals.css
+├── tailwind.config.js
+├── tsconfig.json
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🚩 Libraries and Technologies I use
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- TypeScript
+- Toastify
+- Tailwindcss
+- Redux
+- Redux Toolkit
+- React Hook Form
+- React-Phone-Number
+- Formik-Yup
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 🚩 How does my project look
 
-## Learn More
+<p align="left">
+  <img src="public/product.gif" width="700" title="hover text">
+  
+</p>
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🚩 How To Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To clone and run this application, you'll need Git
+```
+# Clone this repository ($ git clone https://github.com/......)
 
-## Deploy on Vercel
+   - Run the following command to install the required dependencies of the project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+>> npm install [This command downloads all the dependencies in the project's package.json file and creates the necessary files to run the project.]
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   - Run the following command to compile Typescript files:
+>> npm run build [This command compiles all Typescript files in the project and converts them to JavaScript files.]
+>> npm run start
+>> Open the runserver
+```
