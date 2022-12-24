@@ -26,22 +26,6 @@ export default function Products({ productId }: IProps) {
     const router = useRouter();
 
     useEffect(() => {
-        const getData = async () => {
-            await axios
-                .get("https://assignment-api.piton.com.tr/api/v1/product/all", {
-                    headers: {
-                        "Content-Type": "application/json;charset=UTF-8",
-                        "access-token": `${localStorage.getItem("user")}`,
-                    },
-                })
-                .then((res) => {
-                    setProducts(res.data.products);
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                    router.push("/login");
-                });
-        };
         getData();
     }, []);
 
@@ -62,7 +46,6 @@ export default function Products({ productId }: IProps) {
             });
             
     };
-
 
 
 

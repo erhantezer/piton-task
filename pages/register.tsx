@@ -19,7 +19,7 @@ const RegisterForm = () => {
         surname: Yup.string()
             .required("Soyadinizi girmeniz zorunlu!"),
         telephone: Yup.number()
-            .min(17)
+            .min(12)
             .required("Tel girmeniz zorunlu!"),
         email: Yup.string()
             .email("E-Mail formatinda giriniz!")
@@ -109,7 +109,7 @@ const RegisterForm = () => {
                         </label>
                         <div className="invalid-feedback">{(errors.telephone as any)?.message}</div>
                         <PhoneInput
-                            maxLength="17"
+                            maxLength="14"
                             id="telephone"
                             className="bg-gray-100  border text-sm rounded-lg border-gray-400 w-full p-2 "
                             international

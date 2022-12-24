@@ -27,21 +27,6 @@ const ProductDetail = ({ productId }: IProps) => {
 
     useEffect(() => {
         if (!id) return;
-        const getData = async () => {
-            await axios
-                .get(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`, {
-                    headers: {
-                        "Content-Type": "application/json;charset=UTF-8",
-                        "access-token": `${localStorage.getItem("user")}`,
-                    },
-                })
-                .then((res) => {
-                    setProduct(res.data.product);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        };
         getData();
     }, [id]);
 
